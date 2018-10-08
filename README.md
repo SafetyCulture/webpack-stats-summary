@@ -67,6 +67,13 @@ $ cat webpack-stats-summary.md
 | user-profile             |   241.93 |    53.87 |
 ```
 
+| Chunk Group           | Disk KiB | Gzip KiB |
+| --------------------- | -------- | -------: |
+| Total                 | 753.80   |   204.67 |
+| main                  | 509.11   |   149.99 |
+| i18n-en-messages-json | 2.76     |     0.81 |
+| user-profile          | 241.93   |    53.87 |
+
 ### set the location of the stats file
 
 ```bash
