@@ -1,0 +1,28 @@
+{
+  "name": "webpack-stats-summary",
+  "version": "0.0.1",
+  "description": "Summarise Webpack stats",
+  "main": "src/index.js",
+  "author": "Jason Galea <jason@lecstor.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "lint": "tslint --project ./tsconfig.json"
+  },
+  "bin": "./bin/index.js",
+  "dependencies": {
+    "args": "^5.0.0",
+    "cli-table2": "^0.2.0",
+    "gzip-size": "^5.0.0",
+    "markdown-table": "^1.1.2"
+  },
+  "devDependencies": {
+    "@types/cli-table2": "^0.2.1",
+    "@types/gzip-size": "^4.1.0",
+    "@types/node": "^10.11.4",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.1.1"
+  }
+}
