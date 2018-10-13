@@ -57,7 +57,10 @@ export default function getSummary(stats: Stats): Summary {
 
   for (const chunkGroup of chunkGroupNames) {
     // skip main chunk (already done)
-    if (chunkGroup !== "main") {
+    if (
+      chunkGroup !== "main" &&
+      stats.namedChunkGroups[chunkGroup].assets.length
+    ) {
       const assetsSum = getAssets(getGroupStatsAssets(stats, chunkGroup));
       chunkGroups[chunkGroup] = { assets: assetsSum };
     }
