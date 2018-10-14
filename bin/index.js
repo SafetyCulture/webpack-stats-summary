@@ -21,7 +21,7 @@ args
   )
   .option(
     "output",
-    "console/markdown dump to the console or create webpack-stats-summary.md [console]"
+    "console/json/markdown dump to the console or create webpack-stats-summary.md [console]"
   )
   .option(["c", "includeChunks"], "list individual chunk sizes [false]")
   .option("buildPath", "path to the build [stats.outputPath]")
@@ -45,6 +45,8 @@ addGzip(summary, options.buildPath || stats.outputPath).then(summ => {
         includeWarnings: !options.w
       })
     );
+  } else if (options.output === "json") {
+    fs.writeFileSync("webpack-stats-summary.json", JSON.stringify(summ));
   } else {
     const table = consoleTable({ includeChunks: options.includeChunks });
     const rows = chunkGroupsConsoleTableRows(summ, {

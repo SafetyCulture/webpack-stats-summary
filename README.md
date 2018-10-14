@@ -28,6 +28,26 @@ i18n-en-messages-json              2.76     0.81
 user-profile                     241.93    53.87
 ```
 
+Errors and warnings are included by defaultif present in the stats file..
+
+```
+ Errors
+[at-loader] ./src/something.ts:14:47
+    TS6133: 'nogood' is declared but its value is never read.
+
+ Warnings
+asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets:
+  js/vendors~main.25a57a75.js (379 KiB)
+entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:
+  main (438 KiB)
+      manifest.js
+      js/vendors~main.25a57a75.js
+      js/main.4561ef18.js
+```
+
 ### include chunk details
 
 ```bash
@@ -73,6 +93,12 @@ $ cat webpack-stats-summary.md
 | main                  | 509.11   |   149.99 |
 | i18n-en-messages-json | 2.76     |     0.81 |
 | user-profile          | 241.93   |    53.87 |
+
+### write summary as a json file
+
+```bash
+$ webpack-stats-summary -o json
+```
 
 ### set the location of the stats file
 
