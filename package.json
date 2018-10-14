@@ -1,6 +1,6 @@
 {
   "name": "webpack-stats-summary",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Summarise Webpack stats",
   "main": "dist/index.js",
   "author": "Jason Galea <jason@lecstor.com>",
