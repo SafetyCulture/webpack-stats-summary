@@ -19,6 +19,8 @@ type Stats = {
     };
   };
   outputPath: string;
+  errors: string[];
+  warnings: string[];
 };
 
 function getAssets(assetsStats: StatsAssets): Assets {
@@ -65,6 +67,6 @@ export default function getSummary(stats: Stats): Summary {
       chunkGroups[chunkGroup] = { assets: assetsSum };
     }
   }
-
-  return { chunkGroups };
+  const { errors, warnings } = stats;
+  return { chunkGroups, errors, warnings };
 }

@@ -2,7 +2,11 @@ import table = require("markdown-table");
 
 import { Summary } from "./types";
 
-type Options = { includeChunks?: boolean };
+type Options = {
+  includeChunks?: boolean;
+  includeErrors?: boolean;
+  includeWarnings?: boolean;
+};
 
 function newGroupRow(
   group: string,
@@ -26,7 +30,7 @@ export default function chunkGroupsMarkDownTable(
   summary: Summary,
   options: Options = {}
 ) {
-  const { includeChunks } = options;
+  const { includeChunks, includeErrors, includeWarnings } = options;
   const { chunkGroups } = summary;
 
   const rows = [
@@ -76,5 +80,24 @@ export default function chunkGroupsMarkDownTable(
   if (includeChunks) {
     align.unshift("");
   }
-  return table(rows, { align });
+
+  const tables = [table(rows, { align })];
+
+  if (includeErrors && summary.errors.length) {
+    tables.push(
+      `### Errors\n\n${summary.errors
+        .map(err => "```\n" + err + "\n```")
+        .join("\n")}`
+    );
+  }
+
+  if (includeWarnings && summary.warnings.length) {
+    tables.push(
+      `#### Warnings\n\n${summary.warnings
+        .map(err => "```\n" + err + "\n```")
+        .join("\n")}`
+    );
+  }
+
+  return tables.join("\n\n");
 }

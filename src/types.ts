@@ -19,4 +19,6 @@ export type Summary = {
   chunkGroups: ChunkGroups;
   diskSize?: number;
   gzipSize?: number;
+  errors: string[];
+  warnings: string[];
 };

@@ -24,7 +24,9 @@ args
     "console/markdown dump to the console or create webpack-stats-summary.md [console]"
   )
   .option(["c", "includeChunks"], "list individual chunk sizes [false]")
-  .option("buildPath", "path to the build [stats.outputPath]");
+  .option("buildPath", "path to the build [stats.outputPath]")
+  .option(["e", "no-errors"], "do not include errors", false)
+  .option(["w", "no-warnings"], "do not include warnings", false);
 
 const options = args.parse(process.argv);
 
@@ -37,7 +39,11 @@ addGzip(summary, options.buildPath || stats.outputPath).then(summ => {
   if (options.output === "markdown") {
     fs.writeFileSync(
       "webpack-stats-summary.md",
-      chunkGroupsMarkDownTable(summ, { includeChunks: options.includeChunks })
+      chunkGroupsMarkDownTable(summ, {
+        includeChunks: options.includeChunks,
+        includeErrors: !options.e,
+        includeWarnings: !options.w
+      })
     );
   } else {
     const table = consoleTable({ includeChunks: options.includeChunks });
@@ -46,5 +52,17 @@ addGzip(summary, options.buildPath || stats.outputPath).then(summ => {
     });
     table.push(...rows);
     console.log(table.toString());
+
+    if (!options.e && stats.errors.length) {
+      const errTable = consoleTable({ head: ["Errors"] });
+      errTable.push.apply(errTable, stats.errors.map(err => [err]));
+      console.log("\n", errTable.toString());
+    }
+
+    if (!options.w && stats.warnings.length) {
+      const warnTable = consoleTable({ head: ["Warnings"] });
+      warnTable.push.apply(warnTable, stats.warnings.map(warn => [warn]));
+      console.log("\n", warnTable.toString());
+    }
   }
 });
