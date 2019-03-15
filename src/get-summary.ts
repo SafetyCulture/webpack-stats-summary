@@ -45,7 +45,7 @@ function getGroupStatsAssets(stats: Stats, chunkGroup: string) {
   const statsAssetsLookup = getStatsAssetsLookup(stats);
   return stats.namedChunkGroups[chunkGroup].assets.map(
     asset => statsAssetsLookup[asset]
-  );
+  ).filter(asset => !!asset); // Filter undefined assets
 }
 
 export default function getSummary(stats: Stats): Summary {

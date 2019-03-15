@@ -1,6 +1,6 @@
 {
-  "name": "webpack-stats-summary",
-  "version": "1.2.1",
+  "name": "@safetyculture/webpack-stats-summary",
+  "version": "1.2.2",
   "description": "Summarise Webpack stats",
   "main": "dist/index.js",
   "author": "Jason Galea <jason@lecstor.com>",
@@ -8,8 +8,8 @@
   "keywords": [
     "webpack"
   ],
-  "repository": "github:lecstor/webpack-stats-summary",
-  "bugs": "https://github.com/lecstor/webpack-stats-summary/issues",
+  "repository": "https://github.com/SafetyCulture/webpack-stats-summary",
+  "bugs": "https://github.com/SafetyCulture/webpack-stats-summary/issues",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
